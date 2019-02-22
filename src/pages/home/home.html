@@ -1,14 +1,28 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>
+            Ionic Blank
+        </ion-title>
+        <ion-buttons start>
+            <button ion-button *ngIf="depth" (click)="goBack()"><ion-icon name="arrow-back"></ion-icon> Back</button>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+    <ion-list>
+        <div *ngFor="let folder of folders">
+            <ion-item *ngIf="folder['.tag'] == 'folder'" detail-push (click)="openFolder(folder.path_lower)">
+                {{folder.name}}
+            </ion-item>
+            <ion-item *ngIf="folder['.tag'] == 'file'">
+                {{folder.name}}
+            </ion-item>
+        </div>
+    </ion-list>
+
+
+
+
 </ion-content>
